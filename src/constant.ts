@@ -1,0 +1,7 @@
+export const EVENT = {
+  OPEN: 'OPEN',
+  MESSAGE: 'MESSAGE',
+  CLOSE: 'CLOSE',
+  ERROR: 'ERROR',
+  RECONNECT: 'RECONNECT',
+};
