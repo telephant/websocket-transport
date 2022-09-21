@@ -2,10 +2,12 @@ import { EVENT } from './constant';
 import EnhancedEventEmitter from './enhanced-event-emitter';
 import Retry from './retry';
 
-interface WebSocketTransportSpec {
+export interface WebSocketTransportSpec {
   url: string;
   binaryType: BinaryType;
 }
+
+export type DataType = string | ArrayBufferLike | Blob | ArrayBufferView
 
 interface IWebSocketTransport {
   opened: boolean;
@@ -18,7 +20,7 @@ interface IWebSocketTransport {
 
   connect: () => Promise<void>;
 
-  message: (data: any) => void;
+  send: (data: any) => void;
 
   close: () => void;
 
@@ -90,7 +92,7 @@ class WebSocketTransport extends EnhancedEventEmitter implements IWebSocketTrans
     });
   }
 
-  message(data: string | ArrayBufferLike | Blob | ArrayBufferView) {
+  send(data: string | ArrayBufferLike | Blob | ArrayBufferView) {
     if (!this._websocket) {
       throw new Error('websocket is empty!');
     }
